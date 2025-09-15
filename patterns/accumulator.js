@@ -22,7 +22,24 @@ export function sumToN(n) {
  * @returns `1` if n is 0
  */
 export function factorial(n) {
-  // TODO
+  if (typeof n !== "number" || isNaN(n)) {
+    return NaN;
+  }
+
+  if (n < 0) {
+    return undefined;
+  }
+
+  if (n === 0) {
+    return 1;
+  }
+
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+
+  return result;
 }
 
 /**
@@ -32,7 +49,22 @@ export function factorial(n) {
  * @returns `[]` if n is 0 or negative
  */
 export function buildNArray(n) {
-  // TODO
+  if (typeof n !== "number" || isNaN(n)) {
+    return null;
+  }
+
+  // Check if n is 0 or negative
+  if (n <= 0) {
+    return [];
+  }
+
+  // Build array of integers from 1 to n
+  const result = [];
+  for (let i = 1; i <= n; i++) {
+    result.push(i);
+  }
+
+  return result;
 }
 
 /**
@@ -40,7 +72,19 @@ export function buildNArray(n) {
  * @returns {string} the longest string in `strings`
  */
 export function getLongestString(strings) {
-  // TODO
+  if (!strings || strings.length === 0) {
+    return "";
+  }
+
+  let longest = strings[0];
+
+  for (let i = 1; i < strings.length; i++) {
+    if (strings[i].length > longest.length) {
+      longest = strings[i];
+    }
+  }
+
+  return longest;
 }
 
 /**
@@ -48,7 +92,19 @@ export function getLongestString(strings) {
  * @returns {number} the number of students present
  */
 export function countPresent(attendance) {
-  // TODO
+  if (!attendance) {
+    return 0;
+  }
+
+  let count = 0;
+
+  for (let i = 0; i < attendance.length; i++) {
+    if (attendance[i]) {
+      count++;
+    }
+  }
+
+  return count;
 }
 
 /**
@@ -62,5 +118,32 @@ export function countPresent(attendance) {
  * @returns `null` if `dna` is not a string
  */
 export function complementDNA(dna) {
-  // TODO
+  if (typeof dna !== "string") {
+    return null;
+  }
+
+  let complement = "";
+
+  for (let i = 0; i < dna.length; i++) {
+    const nucleotide = dna[i];
+
+    switch (nucleotide) {
+      case "A":
+        complement += "T";
+        break;
+      case "T":
+        complement += "A";
+        break;
+      case "C":
+        complement += "G";
+        break;
+      case "G":
+        complement += "C";
+        break;
+      default:
+        complement += nucleotide;
+    }
+  }
+
+  return complement;
 }
